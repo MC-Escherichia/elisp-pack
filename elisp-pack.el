@@ -42,6 +42,25 @@
 (use-package ielm
   :config (add-hook 'ielm-mode-hook 'paredit-mode))
 
+(defun remove-elc-when-visit ()
+  "When visit, remove <filename>.elc"
+  (make-local-variable 'find-file-hook)
+  (add-hook 'find-file-hook
+            (lambda ()
+              (if (file-exists-p (concat buffer-file-name "c"))
+                  (delete-file (concat buffer-file-name "c"))))))
+(add-hook 'emacs-lisp-mode-hook 'remove-elc-when-visit)
+
+(defun byte-compile-when-save()
+  "When save, recompile it"
+  (make-local-variable 'after-save-hook)
+  (add-hook 'after-save-hook
+	    (lambda ()
+	      (if (string-match ".*\.el" (buffer-file-name))
+                  (byte-compile-file buffer-file-name)))))
+
+(add-hook 'emacs-lisp-mode-hook 'byte-compile-when-save)
+
 ;; to display a beautiful line instead of the ugly ^L
 (use-package page-break-lines
   :config
