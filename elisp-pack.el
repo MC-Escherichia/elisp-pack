@@ -3,6 +3,7 @@
 ;;; Commentary:
 
 ;;; Code:
+(require 'use-package)
 
 (use-package bug-hunter)
 (use-package ert)
@@ -12,8 +13,8 @@
 (use-package cl-lib)
 (use-package dash)
 (use-package dash-functional)
-(use-package bug-hunter)
 (use-package overseer)
+
 
 (use-package autoinsert
   :config (auto-insert-mode 1))
@@ -22,7 +23,6 @@
   :config (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
 
 (use-package smartscan)
-(use-package overseer)
 
 (use-package lisp-mode
   :config
