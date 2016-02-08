@@ -105,5 +105,7 @@ This command assumes point is not in a string or comment."
   "Trace functions FNS."
   (mapc 'untrace-function fns))
 
+(global-set-key (kbd "C-x X e") 'edebug-defun)
+
 (provide 'elisp-pack)
 ;;; elisp-pack.el ends here
