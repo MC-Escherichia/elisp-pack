@@ -56,7 +56,7 @@
   (make-local-variable 'after-save-hook)
   (add-hook 'after-save-hook
 	    (lambda ()
-	      (if (string-match ".*\.el" (buffer-file-name))
+	      (if (string-match ".*\\.el$" (buffer-file-name))
                   (byte-compile-file buffer-file-name)))))
 
 (add-hook 'emacs-lisp-mode-hook 'byte-compile-when-save)
